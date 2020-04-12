@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TM_backend.Controllers
 {
@@ -11,7 +11,7 @@ namespace TM_backend.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private static List<string> Summaries = new List<string>
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
@@ -31,9 +31,24 @@ namespace TM_backend.Controllers
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                Summary = Summaries[rng.Next(Summaries.Count)]
             })
             .ToArray();
+        }
+
+        [HttpGet("summaries")]
+        [Authorize]
+        public IEnumerable<string> GetSummaries()
+        {
+            return Summaries;
+        }
+
+        [HttpPost("add/{item}")]
+        [Authorize(Roles = "admin")]
+        public string AddSummaries(string item)
+        {
+            Summaries.Add(item);
+            return $"Total: {Summaries.Count} items";
         }
     }
 }
