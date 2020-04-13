@@ -8,10 +8,23 @@
 		{
 			"name": "get token",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "https://localhost:5001/api/auth/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"token"
+					]
 				}
 			},
 			"response": []
@@ -22,7 +35,18 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "https://localhost:5001/api/auth/token/secret",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"auth",
+						"token",
+						"secret"
+					]
 				}
 			},
 			"response": []
@@ -30,10 +54,29 @@
 		{
 			"name": "get data with token",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Imd1ZXN0IiwibmJmIjoxNTg2NzIwMjkyLCJleHAiOjE2MTgyNTYyOTIsImlzcyI6IlRNIiwiYXVkIjoiQVBJY2xpZW50cyJ9.-dveRdWjAKIJejb6Ar84trgotzCWjZBAwaXK2nTFGDk",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "https://localhost:5001/weatherforecast/summaries",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"weatherforecast",
+						"summaries"
+					]
 				}
 			},
 			"response": []
@@ -41,10 +84,30 @@
 		{
 			"name": "add item",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6ImFkbWluIiwibmJmIjoxNTg2NzIwMzEyLCJleHAiOjE2MTgyNTYzMTIsImlzcyI6IlRNIiwiYXVkIjoiQVBJY2xpZW50cyJ9.G2OpN5_hTPPMOYtxe2ZlFJNLVwiWKQiVpOsoHXq-pGA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "https://localhost:5001/weatherforecast/add/snow",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"weatherforecast",
+						"add",
+						"snow"
+					]
 				}
 			},
 			"response": []
@@ -52,10 +115,30 @@
 		{
 			"name": "add item with guest token",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Imd1ZXN0IiwibmJmIjoxNTg2NzIwMjkyLCJleHAiOjE2MTgyNTYyOTIsImlzcyI6IlRNIiwiYXVkIjoiQVBJY2xpZW50cyJ9.-dveRdWjAKIJejb6Ar84trgotzCWjZBAwaXK2nTFGDk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "https://localhost:5001/weatherforecast/add/snow",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"weatherforecast",
+						"add",
+						"snow"
+					]
 				}
 			},
 			"response": []
