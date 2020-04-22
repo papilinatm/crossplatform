@@ -11,12 +11,9 @@ namespace TM_backend.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static List<string> Summaries = new List<string>
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private List<string> Summaries=> SharedData.Summaries;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
