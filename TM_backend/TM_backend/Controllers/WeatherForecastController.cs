@@ -13,7 +13,7 @@ namespace TM_backend.Controllers
     {
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private List<string> Summaries=> SharedData.Summaries;
+        private HashSet<string> Summaries=> SharedData.Summaries;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
@@ -21,14 +21,26 @@ namespace TM_backend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public WeatherForecast Get()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return new WeatherForecast
+            {
+                Date = DateTime.Now,
+                TemperatureC = rng.Next(-20, 55),
+                Summary = Summaries.ToList()[rng.Next(Summaries.Count)]
+            };
+        }
+
+        [HttpGet("week")]
+        public IEnumerable<WeatherForecast> GetWeekForecast()
+        {
+            var rng = new Random();
+            return Enumerable.Range(1, 7).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Count)]
+                Summary = Summaries.ToList()[rng.Next(Summaries.Count)]
             })
             .ToArray();
         }
@@ -38,6 +50,14 @@ namespace TM_backend.Controllers
         public IEnumerable<string> GetSummaries()
         {
             return Summaries;
+        }
+
+        [HttpGet("choose/{item}")]
+        [Authorize(Roles = "admin")]
+        public WeatherForecast ChooseWeather(string item)
+        {
+            Summaries.Add(item);
+            return new WeatherForecast { Date = DateTime.Now, Summary = item, TemperatureC = 0 };
         }
 
         [HttpPost("add/{item}")]

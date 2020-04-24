@@ -5,7 +5,7 @@ namespace TM_backend
 {
     public static class SharedData
     {
-        public static List<string> Summaries { get; } = new List<string>
+        public static HashSet<string> Summaries { get; } = new HashSet<string>
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };

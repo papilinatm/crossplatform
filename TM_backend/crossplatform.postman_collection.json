@@ -82,6 +82,52 @@
 			"response": []
 		},
 		{
+			"name": "get forecasts for week",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/weatherforecast/week",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"weatherforecast",
+						"week"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get forecast",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/weatherforecast/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"weatherforecast",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add item",
 			"request": {
 				"auth": {
@@ -200,6 +246,37 @@
 						"api",
 						"auth",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "choose weather",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6ImFkbWluIiwibmJmIjoxNTg2NzIwMzEyLCJleHAiOjE2MTgyNTYzMTIsImlzcyI6IlRNIiwiYXVkIjoiQVBJY2xpZW50cyJ9.G2OpN5_hTPPMOYtxe2ZlFJNLVwiWKQiVpOsoHXq-pGA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/weatherforecast/choose/sunny",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"weatherforecast",
+						"choose",
+						"sunny"
 					]
 				}
 			},
