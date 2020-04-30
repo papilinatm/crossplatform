@@ -45,6 +45,7 @@ namespace TM_backend
                 };
             }
             );
+            services.AddCors();
             services.AddControllers();
         }
 
@@ -62,6 +63,7 @@ namespace TM_backend
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors(cpb => cpb.AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {
