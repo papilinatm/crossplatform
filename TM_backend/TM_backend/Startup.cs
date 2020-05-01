@@ -28,6 +28,7 @@ namespace TM_backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters()
@@ -45,7 +46,6 @@ namespace TM_backend
                 };
             }
             );
-            services.AddCors();
             services.AddControllers();
         }
 
@@ -57,13 +57,19 @@ namespace TM_backend
                 app.UseDeveloperExceptionPage();
             }
 
+            //don't do it in real production code!!!
+            app.UseCors(cpb => cpb
+                .SetIsOriginAllowed(_ => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+            );
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors(cpb => cpb.AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {

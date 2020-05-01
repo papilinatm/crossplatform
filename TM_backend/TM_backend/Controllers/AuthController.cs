@@ -13,7 +13,7 @@ namespace TM_backend.Controllers
     public class AuthController : ControllerBase
     {
         [HttpPost]
-        public string GetToken ([FromForm] string login, [FromForm] string password)
+        public object GetToken ([FromForm] string login, [FromForm] string password)
         {
             var user = SharedData.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
             if (user==null)
@@ -29,12 +29,12 @@ namespace TM_backend.Controllers
             return SharedData.Users;
         }
         [HttpGet("token")]
-        public string GetToken ()
+        public object GetToken ()
         {
             return AuthOptions.GenerateToken();
         }
         [HttpGet("token/secret")]
-        public string GetAdminToken ()
+        public object GetAdminToken ()
         {
             return AuthOptions.GenerateToken(true);
         }
