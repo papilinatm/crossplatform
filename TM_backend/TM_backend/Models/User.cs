@@ -9,7 +9,13 @@ namespace TM_backend.Models
         private byte[] password;
         public string Password
         {
-            get { return Encoding.UTF8.GetString(new MD5CryptoServiceProvider().ComputeHash(password)); }
+            get
+            {
+                var sb = new StringBuilder();
+                foreach (var b in new MD5CryptoServiceProvider().ComputeHash(password))
+                    sb.Append(b.ToString("x2"));
+                return sb.ToString();
+            }
             set { password = Encoding.UTF8.GetBytes(value); }
         }
         public bool IsAdmin => Login == "admin";

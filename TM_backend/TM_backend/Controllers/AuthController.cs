@@ -12,14 +12,19 @@ namespace TM_backend.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        [HttpPost]
-        public object GetToken ([FromForm] string login, [FromForm] string password)
+        public struct LoginData
         {
-            var user = SharedData.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
+            public string login { get; set; }
+            public string password { get; set; }
+        }
+        [HttpPost]
+        public object GetToken ([FromBody] LoginData ld)
+        {
+            var user = SharedData.Users.FirstOrDefault(u => u.Login == ld.login && u.Password == ld.password);
             if (user==null)
             {
                 Response.StatusCode = 401;
-                return "wrong login/password";
+                return new { message = "wrong login/password" };
             }    
             return AuthOptions.GenerateToken(user.IsAdmin);
         }
