@@ -12,7 +12,7 @@ namespace TM_backend.Models
             get
             {
                 var sb = new StringBuilder();
-                foreach (var b in new MD5CryptoServiceProvider().ComputeHash(password))
+                foreach (var b in MD5.Create().ComputeHash(password))
                     sb.Append(b.ToString("x2"));
                 return sb.ToString();
             }
